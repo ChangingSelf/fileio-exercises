@@ -10,6 +10,23 @@ public class StudentInfo {
 	private String m_major = "";//专业
 	private Vector<String> m_reward = new Vector<String>();//奖励
 	
+	public void printInfo() {
+		String rewardString = String.join(",", m_reward);//拼接奖励字符串
+		if(rewardString == null) rewardString = "";
+		
+		System.out.printf("\n学号\t姓名\t性别\t年龄\t专业\t奖励\n");
+		System.out.printf("%s\t%s\t%s\t%d\t%s\t%s\n",
+				m_studentId,
+				m_name,
+				m_gender.getGender(),
+				m_age,
+				m_major,
+				rewardString
+				);
+		
+	}
+	
+	
 
 	public String getStudentId() {
 		return m_studentId;
@@ -72,7 +89,10 @@ public class StudentInfo {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		StudentInfo sInfo = new StudentInfo();
+		sInfo.getReward().add("2011校奖学金");
+		sInfo.getReward().add("2012国家奖学金");
+		sInfo.printInfo();
 
 	}
 
