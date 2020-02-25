@@ -39,7 +39,26 @@ public class StudentInfoSystem {
 		}while(gender == null);
 		
 		System.out.println("请输入学生的年龄");
-		int age = scanner.nextInt();
+		int age = 0;
+		while (true) {
+			try {
+				age = scanner.nextInt();
+				if(age<=0) {
+					System.out.println("年龄必须是正数");
+				}
+				else {
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println("年龄必须是整数");
+				scanner.next();//清空错误数据
+			}
+			
+			
+		}
+		
+		
+		
 		
 		scanner.nextLine();//清除缓冲区空行
 		
