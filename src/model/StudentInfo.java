@@ -10,15 +10,30 @@ public class StudentInfo {
 	private String m_major = "";//专业
 	private Vector<String> m_reward = new Vector<String>();//奖励
 	
-	public void printInfo() {
+	public StudentInfo() {
+		
+	}
+	public StudentInfo(String studentId,String name,Gender gender,int age,String major,Vector<String> reward) {
+		m_studentId = studentId;
+		m_name = name;
+		m_gender = gender;
+		m_age = age;
+		m_major = major;
+		m_reward = reward;
+	}
+	
+	/**
+	 * 打印个人信息
+	 */
+	public void printInfo(boolean tableHead) {
 		String rewardString = String.join(",", m_reward);//拼接奖励字符串
 		if(rewardString == null) rewardString = "";
 		
-		System.out.printf("\n学号\t姓名\t性别\t年龄\t专业\t奖励\n");
+		if(tableHead) System.out.printf("\n学号\t姓名\t性别\t年龄\t专业\t奖励\n");
 		System.out.printf("%s\t%s\t%s\t%d\t%s\t%s\n",
 				m_studentId,
 				m_name,
-				m_gender.getGender(),
+				m_gender.getGenderString(),
 				m_age,
 				m_major,
 				rewardString
@@ -92,7 +107,7 @@ public class StudentInfo {
 		StudentInfo sInfo = new StudentInfo();
 		sInfo.getReward().add("2011校奖学金");
 		sInfo.getReward().add("2012国家奖学金");
-		sInfo.printInfo();
+		sInfo.printInfo(true);
 
 	}
 
