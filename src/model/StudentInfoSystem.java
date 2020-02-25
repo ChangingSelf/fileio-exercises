@@ -41,12 +41,19 @@ public class StudentInfoSystem {
 		System.out.println("请输入学生的年龄");
 		int age = scanner.nextInt();
 		
+		scanner.nextLine();//清除缓冲区空行
+		
 		System.out.println("请输入学生的专业");
 		String major = scanner.nextLine();
 		
-		System.out.println("请输入学生的奖励");
-		//TODO:明天再弄
+		System.out.println("请输入学生的奖励，每输入完一项换行，输入\"done\"结束输入");
+		String rewardString = "";
 		Vector<String> reward = new Vector<String>();
+		do {
+			rewardString = scanner.nextLine();
+			if(!rewardString.equalsIgnoreCase("done")) reward.add(rewardString);
+		} while (!rewardString.equalsIgnoreCase("done"));
+		
 		
 		return new StudentInfo(studentId,name,gender,age,major,reward);
 	}
