@@ -19,7 +19,9 @@ public class StudentInfo {
 		m_gender = gender;
 		m_age = age;
 		m_major = major;
-		m_reward = reward;
+		
+		m_reward = reward != null? reward : new Vector<String>();
+		
 	}
 	
 	/**
@@ -29,8 +31,15 @@ public class StudentInfo {
 		String rewardString = String.join(",", m_reward);//拼接奖励字符串
 		if(rewardString == null) rewardString = "";
 		
-		if(tableHead) System.out.printf("\n学号\t姓名\t性别\t年龄\t专业\t奖励\n");
-		System.out.printf("%s\t%s\t%s\t%d\t%s\t%s\n",
+		if(tableHead) System.out.printf("\n%20s\t%10s\t%5s\t%5s\t%20s\t%20s\n",
+				"学号",
+				"姓名",
+				"性别",
+				"年龄",
+				"专业",
+				"奖励"
+				);
+		System.out.printf("%s\t%10s\t%5s\t%5d\t%20s\t%20s\n",
 				m_studentId,
 				m_name,
 				m_gender.getGenderString(),

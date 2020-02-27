@@ -7,6 +7,16 @@ import java.util.Vector;
 public class StudentInfoSystem {
 	
 	private Vector<StudentInfo> m_studentInfoList = new Vector<StudentInfo>();//学生信息列表
+	
+	
+	
+	public StudentInfoSystem() {
+		
+	}
+	
+	public StudentInfoSystem(StudentInfo[] studentInfoList) {
+		addStudents(studentInfoList);
+	}
 
 	/**
 	 * 添加学生
@@ -14,6 +24,12 @@ public class StudentInfoSystem {
 	 */
 	public void addStudent(StudentInfo studentInfo) {
 		m_studentInfoList.add(studentInfo);
+	}
+	
+	public void addStudents(StudentInfo[] studentInfoList) {
+		for(StudentInfo studentInfo : studentInfoList) {
+			addStudent(studentInfo);
+		}
 	}
 	
 	/**
@@ -88,11 +104,87 @@ public class StudentInfoSystem {
 		}
 	}
 	
+	/**
+	 * 保存到文件中
+	 * @param pathName 数据文件所在的路径字符串
+	 * @return 保存的记录数，如果出错返回-1
+	 */
+	public int saveData(String pathName) {
+		
+		
+		try {
+			File dir = new File(pathName);
+			if(!dir.isDirectory()) return -1;//如果传入的不是目录字符串，则返回
+			
+			File infoFile = new File(pathName + "/StudentInfoList.csv");//学生信息文件
+			File rewardFile = new File(pathName + "/Rewards.csv");//学生奖励文件
+			
+			if(!infoFile.exists()) infoFile.createNewFile();
+			if(!rewardFile.exists()) rewardFile.createNewFile();
+			
+			FileOutputStream infoFOS = new FileOutputStream(infoFile);
+			FileOutputStream rewardFOS = new FileOutputStream(rewardFile);
+			
+			int curPosition = 0;//“奖励”文件指针当前位置
+			for(StudentInfo studentInfo:m_studentInfoList) {
+				String studentInfoString = String.format("%s,%s,%s,%d,%s,", 
+						studentInfo.getStudentId(),
+						studentInfo.getName(),
+						studentInfo.getGender().getGenderString(),
+						studentInfo.getAge(),
+						studentInfo.getMajor()
+						);
+				String rewardString = String.join(",", studentInfo.getReward());//拼接奖励字符串
+				if(rewardString == null) rewardString = "";
+				byte[] rewardBuf = rewardString.getBytes();//转换为字节数组
+				
+				studentInfoString += String.format("%s,%s\n", curPosition,rewardBuf.length);
+				curPosition += rewardBuf.length;//计算下一个位置
+				if(rewardBuf.length!=0) curPosition += "\n".getBytes().length;
+				
+				byte[] infoBuf = studentInfoString.getBytes();
+				
+				//写入文件
+				
+				infoFOS.write(infoBuf);
+				
+				
+				
+				rewardFOS.write(rewardBuf);
+				
+				
+			}
+			rewardFOS.close();
+			infoFOS.close();
+			
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
 	public static void main(String[] args) {
-		StudentInfoSystem sInfoSystem = new StudentInfoSystem();
-		sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
-		sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
+		
+		Vector<String> rewards = new Vector<String>();
+		
+		rewards.add("三好学生");
+		rewards.add("2033校奖学金");
+	
+		StudentInfo[] studentInfos = {
+				new StudentInfo("2017901006", "杨啸", Gender.MALE, 21, "软件工程", null),
+				new StudentInfo("2017999999", "小明", Gender.MALE, 21, "计算机科学与技术", rewards)
+		};
+
+		StudentInfoSystem sInfoSystem = new StudentInfoSystem(studentInfos);
+		
+		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
+		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		sInfoSystem.printStudentList();
+		
+		sInfoSystem.saveData(".");
 
 	}
 
