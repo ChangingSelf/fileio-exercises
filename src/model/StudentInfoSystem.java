@@ -276,9 +276,9 @@ public class StudentInfoSystem {
 	}
 	
 	/**
-	 * 修改学生信息。不需要修改的字段赋值为空
+	 * 修改学生信息。不需要修改的字段赋值为空，字符串为null，数字为0
 	 * @param studentInfo 学生信息入口
-	 * @param studentid
+	 * @param studentId
 	 * @param name
 	 * @param gender
 	 * @param age
@@ -286,9 +286,45 @@ public class StudentInfoSystem {
 	 * @param reward
 	 * @return 是否修改成功
 	 */
-	public boolean modify(StudentInfo studentInfo,String studentid,String name,Gender gender,int age,String major,Vector<String> reward) {
-		return false;
+	public boolean modify(StudentInfo studentInfo,String studentId,String name,Gender gender,int age,String major,Vector<String> reward) {
 		
+		boolean modifyFlag = false;//指示是否修改
+		
+		if(studentInfo == null) {
+			return false;
+		}
+		
+		if(studentId != null) {
+			studentInfo.setStudentId(studentId);
+			modifyFlag = true;
+		}
+		
+		if(name != null) {
+			studentInfo.setName(name);
+			modifyFlag = true;
+		}
+		
+		if(gender != null) {
+			studentInfo.setGender(gender);
+			modifyFlag = true;
+		}
+		
+		if(age != 0) {
+			studentInfo.setAge(age);
+			modifyFlag = true;
+		}
+		
+		if(major != null) {
+			studentInfo.setMajor(major);
+			modifyFlag = true;
+		}
+		
+		if(reward != null) {
+			studentInfo.setReward(reward);
+			modifyFlag = true;
+		}
+		
+		return modifyFlag;
 	}
 	
 	/**
