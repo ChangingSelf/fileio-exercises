@@ -20,11 +20,17 @@ public class StudentInfoSystem {
 
 	/**
 	 * 添加学生
-	 * TODO：学号唯一性检测
 	 * @param studentInfo
+	 * @return 是否修改成功
 	 */
-	public void addStudent(StudentInfo studentInfo) {
-		m_studentInfoList.add(studentInfo);
+	public boolean addStudent(StudentInfo studentInfo) {
+		if(search(studentInfo.getStudentId())!=null) {
+			System.out.printf("学号[%s]已存在，请勿重复添加",studentInfo.getStudentId());
+			return false;
+		}
+		else {
+			return m_studentInfoList.add(studentInfo);
+		}
 	}
 	
 	public void addStudents(StudentInfo[] studentInfoList) {
@@ -370,18 +376,18 @@ public class StudentInfoSystem {
 				new StudentInfo("2017901050", "小刚", Gender.MALE, 23, "网络工程", null)
 		};
 
-		StudentInfoSystem s = new StudentInfoSystem();
+		StudentInfoSystem s = new StudentInfoSystem(studentInfos);
 		
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		s.printStudentList();
-		int num = s.loadData(".", true);
-		System.out.println(num);
+		//int num = s.loadData(".", true);
+		
 		
 		StudentInfo studentInfo = s.searchByName("杨啸");
 		studentInfo.printInfo(true);
 		
-		//sInfoSystem.saveData(".");
+		s.saveData(".");
 
 	}
 
