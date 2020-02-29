@@ -5,7 +5,7 @@ import java.util.Vector;
 public class StudentInfo {
 	private String m_studentId = "";//学号
 	private String m_name = "";//姓名
-	private Gender m_gender = Gender.UNSET;//性别
+	private Gender m_gender = Gender.MALE;//性别
 	private int m_age = 0;//年龄
 	private String m_major = "";//专业
 	private Vector<String> m_reward = new Vector<String>();//奖励

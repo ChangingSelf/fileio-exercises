@@ -1,7 +1,6 @@
 package model;
 
 public enum Gender {
-	UNSET("未设置"),
 	MALE("男"),
 	FAMALE("女");
 	

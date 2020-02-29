@@ -365,7 +365,9 @@ public class StudentInfoSystem {
 	
 		StudentInfo[] studentInfos = {
 				new StudentInfo("2017901006", "杨啸", Gender.MALE, 21, "软件工程", null),
-				new StudentInfo("2017999999", "小明", Gender.MALE, 21, "计算机科学与技术", rewards)
+				new StudentInfo("2017999999", "小明", Gender.MALE, 21, "计算机科学与技术", rewards),
+				new StudentInfo("2017901007", "小红", Gender.FAMALE, 20, "网络工程", rewards),
+				new StudentInfo("2017901050", "小刚", Gender.MALE, 23, "网络工程", null)
 		};
 
 		StudentInfoSystem s = new StudentInfoSystem();
