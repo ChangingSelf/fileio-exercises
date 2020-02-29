@@ -174,6 +174,53 @@ public class StudentInfoSystem {
 	 * @return 读取的记录数，如果出错返回-1
 	 */
 	public int loadData(String pathName,boolean clearFlag) {
+		try {
+			if(clearFlag) m_studentInfoList.clear();
+			
+			File dir = new File(pathName);
+			if(!dir.isDirectory()) return -1;//如果传入的不是目录字符串，则返回
+			
+			File infoFile = new File(pathName + "/StudentInfoList.csv");//学生信息文件
+			File rewardFile = new File(pathName + "/Rewards.csv");//学生奖励文件
+		
+		
+		
+			RandomAccessFile raf = new RandomAccessFile(rewardFile, "r");//随机文件读写
+			
+			BufferedReader bufReader = new BufferedReader(new FileReader(infoFile));//打开缓冲字符流
+			String tmpString = null;
+			while((tmpString = bufReader.readLine()) != null) {
+				//按行读取
+				String[] infoStrings = tmpString.split(",");//按照分隔符分割
+				
+				if(infoStrings.length != 7) {
+					return -1;//如果字段数对不上，说明文件格式有问题
+				}
+					
+				//读取学生信息
+				String studentId = infoStrings[0];
+				String name = infoStrings[1];
+				Gender gender = Gender.newGender(infoStrings[2]);
+				if(gender == null) return -1;
+				
+				int age = Integer.parseInt(infoStrings[3]);
+				String major = infoStrings[4];
+				
+				int position = Integer.parseInt(infoStrings[5]);
+				int rewardLen = Integer.parseInt(infoStrings[6]);
+				
+				new StudentInfo(studentId, name, gender, age, major, null).printInfo(true);
+			}
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		
 		return 0;
 		
 	}
@@ -255,13 +302,14 @@ public class StudentInfoSystem {
 				new StudentInfo("2017999999", "小明", Gender.MALE, 21, "计算机科学与技术", rewards)
 		};
 
-		StudentInfoSystem sInfoSystem = new StudentInfoSystem(studentInfos);
+		StudentInfoSystem sInfoSystem = new StudentInfoSystem();
 		
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		sInfoSystem.printStudentList();
+		sInfoSystem.loadData(".", true);
 		
-		sInfoSystem.saveData(".");
+		//sInfoSystem.saveData(".");
 
 	}
 
