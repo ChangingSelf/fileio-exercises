@@ -114,6 +114,7 @@ public class StudentInfoSystem {
 			studentInfo.printInfo(tableHead);
 			tableHead = false;
 		}
+		System.out.printf("列表中目前有%d条学生信息。\n",m_studentInfoList.size());
 	}
 	
 	/**
