@@ -183,11 +183,10 @@ public class StudentInfoSystem {
 			File infoFile = new File(pathName + "/StudentInfoList.csv");//学生信息文件
 			File rewardFile = new File(pathName + "/Rewards.csv");//学生奖励文件
 		
-		
-		
-			RandomAccessFile raf = new RandomAccessFile(rewardFile, "r");//随机文件读写
 			
 			BufferedReader bufReader = new BufferedReader(new FileReader(infoFile));//打开缓冲字符流
+			RandomAccessFile randomAccessFile = new RandomAccessFile(rewardFile, "r");//打开随机读写
+			
 			String tmpString = null;
 			while((tmpString = bufReader.readLine()) != null) {
 				//按行读取
@@ -197,7 +196,7 @@ public class StudentInfoSystem {
 					return -1;//如果字段数对不上，说明文件格式有问题
 				}
 					
-				//读取学生信息
+				//从StudentInfo文件中读取学生信息
 				String studentId = infoStrings[0];
 				String name = infoStrings[1];
 				Gender gender = Gender.newGender(infoStrings[2]);
@@ -206,10 +205,32 @@ public class StudentInfoSystem {
 				int age = Integer.parseInt(infoStrings[3]);
 				String major = infoStrings[4];
 				
-				int position = Integer.parseInt(infoStrings[5]);
+				long position = Long.parseLong(infoStrings[5]);
 				int rewardLen = Integer.parseInt(infoStrings[6]);
 				
-				new StudentInfo(studentId, name, gender, age, major, null).printInfo(true);
+				//从Reward文件中读取奖励信息
+				randomAccessFile.seek(position);
+				byte[] tmpBytes = new byte[1024];
+				randomAccessFile.read(tmpBytes,0, rewardLen);//读取指定长度的奖励信息
+				
+				String rewardString = new String(tmpBytes).trim();
+				
+				
+				Vector<String> rewardList = null;
+				if(!rewardString.isEmpty()) {
+					//如果奖励不为空则添加
+					rewardList = new Vector<String>();
+					String[] rewardArr = rewardString.split(",");
+					for(String reward : rewardArr) {
+						rewardList.add(reward);
+					}
+					
+				}
+
+				
+				new StudentInfo(studentId, name, gender, age, major, rewardList).printInfo(true);
+				System.out.println(position);
+				System.out.println(rewardLen);
 			}
 			
 			
