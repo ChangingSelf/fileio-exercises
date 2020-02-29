@@ -256,11 +256,10 @@ public class StudentInfoSystem {
 	 */
 	public StudentInfo search(String studentId) {
 		for(StudentInfo studentInfo:m_studentInfoList) {
-			
+			if(studentInfo.getStudentId().equals(studentId))
+				return studentInfo;
 		}
-		
 		return null;
-		
 	}
 	
 	/**
@@ -269,8 +268,11 @@ public class StudentInfoSystem {
 	 * @return 第一个找到的符合的学生信息
 	 */
 	public StudentInfo searchByName(String name) {
+		for(StudentInfo studentInfo:m_studentInfoList) {
+			if(studentInfo.getName().equals(name))
+				return studentInfo;
+		}
 		return null;
-		
 	}
 	
 	/**
@@ -330,13 +332,16 @@ public class StudentInfoSystem {
 				new StudentInfo("2017999999", "小明", Gender.MALE, 21, "计算机科学与技术", rewards)
 		};
 
-		StudentInfoSystem sInfoSystem = new StudentInfoSystem();
+		StudentInfoSystem s = new StudentInfoSystem();
 		
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
-		sInfoSystem.printStudentList();
-		int num = sInfoSystem.loadData(".", true);
+		s.printStudentList();
+		int num = s.loadData(".", true);
 		System.out.println(num);
+		
+		StudentInfo studentInfo = s.searchByName("杨啸");
+		studentInfo.printInfo(true);
 		
 		//sInfoSystem.saveData(".");
 
