@@ -354,7 +354,7 @@ public class StudentInfoSystem {
 	 * @return 是否删除成功
 	 */
 	public boolean remove(StudentInfo studentInfo) {
-		return false;
+		return m_studentInfoList.remove(studentInfo);
 		
 	}
 	
