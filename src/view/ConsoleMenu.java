@@ -21,28 +21,13 @@ public class ConsoleMenu {
 		while(!(inputString = scanner.next()).equalsIgnoreCase("Q")) {
 			switch (inputString) {
 			case "A":case "a"://输出当前所有学生信息
-				studentInfoSystem.printStudentList();
+				printList();
 				break;
 			case "B":case "b"://录入学生信息
-				System.out.println("====录入学生信息====");
-				StudentInfo newStudentInfo = studentInfoSystem.inputStudentInfo();
-				studentInfoSystem.addStudent(newStudentInfo);
+				addStudent();
 				break;
 			case "C":case "c"://查询学生信息
-				System.out.println("====查询学生信息====");
-				System.out.println("请输入学号");
-				Scanner scanner2 = new Scanner(System.in);
-				String studentId = scanner2.next();
-				StudentInfo studentInfo = studentInfoSystem.search(studentId);
-				if(studentInfo == null) {
-					//如果没找到
-					System.out.printf("未找到学号为[%s]的学生\n",studentId);
-					
-				}
-				else {
-					studentInfo.printInfo(true);//如果找到了则输出
-				}
-				
+				search();
 				break;
 			case "D":case "d"://修改学生信息
 				studentInfoSystem.printStudentList();
@@ -83,6 +68,40 @@ public class ConsoleMenu {
 		System.out.println("Q.退出");
 	}
 	
+	/**
+	 * 打印学生信息列表
+	 */
+	public void printList() {
+		studentInfoSystem.printStudentList();
+	}
+	
+	/**
+	 * 录入学生信息
+	 */
+	public void addStudent() {
+		System.out.println("====录入学生信息====");
+		StudentInfo newStudentInfo = studentInfoSystem.inputStudentInfo();
+		studentInfoSystem.addStudent(newStudentInfo);
+	}
+	
+	/**
+	 * 查找
+	 */
+	public void search() {
+		System.out.println("====查询学生信息====");
+		System.out.println("请输入学号");
+		Scanner scanner = new Scanner(System.in);
+		String studentId = scanner.next();
+		StudentInfo studentInfo = studentInfoSystem.search(studentId);
+		if(studentInfo == null) {
+			//如果没找到
+			System.out.printf("未找到学号为[%s]的学生\n",studentId);
+			
+		}
+		else {
+			studentInfo.printInfo(true);//如果找到了则输出
+		}
+	}
 	
 
 	public static void main(String[] args) {
