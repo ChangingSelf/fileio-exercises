@@ -1,8 +1,13 @@
 package model;
 
 import java.io.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
+
+import javafx.print.Collation;
 
 public class StudentInfoSystem {
 	
@@ -333,20 +338,6 @@ public class StudentInfoSystem {
 		return modifyFlag;
 	}
 	
-	/**
-	 * 按照学号从小到大排序
-	 * @param reverse 是否逆序
-	 */
-	public void sortById(boolean reverse) {
-		
-	}
-	/**
-	 * 按照姓名从小到大排序
-	 * @param reverse 是否逆序
-	 */
-	public void sortByName(boolean reverse) {
-		
-	}
 	
 	/**
 	 * 删除
