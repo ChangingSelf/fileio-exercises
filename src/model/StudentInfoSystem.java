@@ -188,7 +188,9 @@ public class StudentInfoSystem {
 			RandomAccessFile randomAccessFile = new RandomAccessFile(rewardFile, "r");//打开随机读写
 			
 			String tmpString = null;
+			int counter = 0;
 			while((tmpString = bufReader.readLine()) != null) {
+				
 				//按行读取
 				String[] infoStrings = tmpString.split(",");//按照分隔符分割
 				
@@ -228,12 +230,13 @@ public class StudentInfoSystem {
 				}
 
 				
-				new StudentInfo(studentId, name, gender, age, major, rewardList).printInfo(true);
-				System.out.println(position);
-				System.out.println(rewardLen);
+				StudentInfo newStudentInfo = new StudentInfo(studentId, name, gender, age, major, rewardList);
+				
+				m_studentInfoList.add(newStudentInfo);
+				counter++;
 			}
 			
-			
+			return counter;
 			
 			
 			
@@ -242,7 +245,7 @@ public class StudentInfoSystem {
 			return -1;
 		}
 		
-		return 0;
+		
 		
 	}
 	
@@ -252,6 +255,10 @@ public class StudentInfoSystem {
 	 * @return 找到的学生信息，如找不到则返回null
 	 */
 	public StudentInfo search(String studentId) {
+		for(StudentInfo studentInfo:m_studentInfoList) {
+			
+		}
+		
 		return null;
 		
 	}
@@ -328,7 +335,8 @@ public class StudentInfoSystem {
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		//sInfoSystem.addStudent(sInfoSystem.inputStudentInfo());
 		sInfoSystem.printStudentList();
-		sInfoSystem.loadData(".", true);
+		int num = sInfoSystem.loadData(".", true);
+		System.out.println(num);
 		
 		//sInfoSystem.saveData(".");
 
