@@ -20,6 +20,7 @@ public class StudentInfoSystem {
 
 	/**
 	 * 添加学生
+	 * TODO：学号唯一性检测
 	 * @param studentInfo
 	 */
 	public void addStudent(StudentInfo studentInfo) {
@@ -165,6 +166,82 @@ public class StudentInfoSystem {
 		
 		return 0;
 	}
+	
+	/**
+	 * 从文件中加载
+	 * @param pathName 数据文件所在的路径字符串
+	 * @param clearFlag 是否清空内存中原有数据
+	 * @return 读取的记录数，如果出错返回-1
+	 */
+	public int loadData(String pathName,boolean clearFlag) {
+		return 0;
+		
+	}
+	
+	/**
+	 * 通过学号查找学生信息
+	 * @param studentId 学生学号
+	 * @return 找到的学生信息，如找不到则返回null
+	 */
+	public StudentInfo search(String studentId) {
+		return null;
+		
+	}
+	
+	/**
+	 * 通过姓名查找学生信息
+	 * @param name 学生姓名
+	 * @return 第一个找到的符合的学生信息
+	 */
+	public StudentInfo searchByName(String name) {
+		return null;
+		
+	}
+	
+	/**
+	 * 修改学生信息。不需要修改的字段赋值为空
+	 * @param studentInfo 学生信息入口
+	 * @param studentid
+	 * @param name
+	 * @param gender
+	 * @param age
+	 * @param major
+	 * @param reward
+	 * @return 是否修改成功
+	 */
+	public boolean modify(StudentInfo studentInfo,String studentid,String name,Gender gender,int age,String major,Vector<String> reward) {
+		return false;
+		
+	}
+	
+	/**
+	 * 按照学号从小到大排序
+	 * @param reverse 是否逆序
+	 */
+	public void sortById(boolean reverse) {
+		
+	}
+	/**
+	 * 按照姓名从小到大排序
+	 * @param reverse 是否逆序
+	 */
+	public void sortByName(boolean reverse) {
+		
+	}
+	
+	/**
+	 * 删除
+	 * @param studentInfo
+	 * @return 是否删除成功
+	 */
+	public boolean remove(StudentInfo studentInfo) {
+		return false;
+		
+	}
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		
