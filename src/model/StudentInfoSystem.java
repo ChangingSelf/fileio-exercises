@@ -164,7 +164,6 @@ public class StudentInfoSystem {
 				
 				studentInfoString += String.format("%s,%s\n", curPosition,rewardBuf.length);
 				curPosition += rewardBuf.length;//计算下一个位置
-				//if(rewardBuf.length!=0) curPosition += "\n".getBytes().length;
 				
 				byte[] infoBuf = studentInfoString.getBytes();
 				
@@ -178,10 +177,17 @@ public class StudentInfoSystem {
 				
 				
 			}
+			
+			System.out.printf("成功保存%d条记录到以下文件中：\n[%s]\n[%s]\n",
+					m_studentInfoList.size(),
+					infoFile.getCanonicalPath(),
+					rewardFile.getCanonicalPath()
+					);
+			
 			rewardFOS.close();
 			infoFOS.close();
 			
-			
+			return m_studentInfoList.size();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

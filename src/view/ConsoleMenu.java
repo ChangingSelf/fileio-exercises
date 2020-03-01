@@ -177,7 +177,10 @@ public class ConsoleMenu {
 	}
 	
 	public void remove() {
+		Scanner scanner = new Scanner(source)
 		
+		
+		StudentInfo info = studentInfoSystem.search(studentId);
 	}
 
 	public void save() {
