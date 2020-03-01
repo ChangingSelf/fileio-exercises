@@ -164,7 +164,7 @@ public class StudentInfoSystem {
 				
 				studentInfoString += String.format("%s,%s\n", curPosition,rewardBuf.length);
 				curPosition += rewardBuf.length;//计算下一个位置
-				if(rewardBuf.length!=0) curPosition += "\n".getBytes().length;
+				//if(rewardBuf.length!=0) curPosition += "\n".getBytes().length;
 				
 				byte[] infoBuf = studentInfoString.getBytes();
 				
@@ -238,7 +238,7 @@ public class StudentInfoSystem {
 				byte[] tmpBytes = new byte[1024];
 				randomAccessFile.read(tmpBytes,0, rewardLen);//读取指定长度的奖励信息
 				
-				String rewardString = new String(tmpBytes).trim();
+				String rewardString = new String(tmpBytes).trim();//转换为字符串
 				
 				
 				Vector<String> rewardList = null;
@@ -259,6 +259,11 @@ public class StudentInfoSystem {
 				counter++;
 			}
 			
+			
+			bufReader.close();
+			randomAccessFile.close();
+			
+			
 			return counter;
 			
 			
@@ -267,6 +272,7 @@ public class StudentInfoSystem {
 			e.printStackTrace();
 			return -1;
 		}
+		
 		
 		
 		
