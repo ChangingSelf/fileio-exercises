@@ -140,6 +140,7 @@ public class StudentInfoSystem {
 			
 			int curPosition = 0;//“奖励”文件指针当前位置
 			for(StudentInfo studentInfo:m_studentInfoList) {
+				
 				String studentInfoString = String.format("%s,%s,%s,%d,%s,", 
 						studentInfo.getStudentId(),
 						studentInfo.getName(),
@@ -147,9 +148,19 @@ public class StudentInfoSystem {
 						studentInfo.getAge(),
 						studentInfo.getMajor()
 						);
+				
+				
 				String rewardString = String.join(",", studentInfo.getReward());//拼接奖励字符串
-				if(rewardString == null) rewardString = "";
+				if(!rewardString.isEmpty()) {
+					//奖励字符串不为空，则添加换行符
+					rewardString += "\n";
+				}
+				
+					
+				
 				byte[] rewardBuf = rewardString.getBytes();//转换为字节数组
+				
+				
 				
 				studentInfoString += String.format("%s,%s\n", curPosition,rewardBuf.length);
 				curPosition += rewardBuf.length;//计算下一个位置
