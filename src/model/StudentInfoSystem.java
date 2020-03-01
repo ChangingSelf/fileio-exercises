@@ -176,6 +176,8 @@ public class StudentInfoSystem {
 				rewardFOS.write(rewardBuf);
 				
 				
+				
+				
 			}
 			
 			System.out.printf("成功保存%d条记录到以下文件中：\n[%s]\n[%s]\n",
@@ -186,6 +188,7 @@ public class StudentInfoSystem {
 			
 			rewardFOS.close();
 			infoFOS.close();
+			
 			
 			return m_studentInfoList.size();
 			

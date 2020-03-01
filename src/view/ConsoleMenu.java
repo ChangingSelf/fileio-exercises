@@ -176,11 +176,40 @@ public class ConsoleMenu {
 		
 	}
 	
+	
 	public void remove() {
-		Scanner scanner = new Scanner(source)
+		printList();
+		System.out.println("请输入学号");
+		Scanner scanner = new Scanner(System.in);
 		
+		String studentId = scanner.nextLine();
 		
 		StudentInfo info = studentInfoSystem.search(studentId);
+		if(info==null) {
+			System.out.printf("没有找到学号为[%s]的学生\n",studentId);
+			return;
+		}
+		else {
+			info.printInfo(true);
+			
+			System.out.println("确定要删除该学生吗？输入Y确定，输入N取消。");
+			String select = scanner.nextLine();
+			if(select.equalsIgnoreCase("Y")) {
+				boolean isSuccess = studentInfoSystem.remove(info);
+				if(isSuccess) {
+					System.out.println("删除成功");
+				}
+				else {
+					System.out.println("删除失败");
+				}
+			}
+			else {
+				System.out.println("取消删除操作");
+			}
+		}
+		
+		
+		
 	}
 
 	public void save() {
