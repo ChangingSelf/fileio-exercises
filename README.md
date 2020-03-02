@@ -25,3 +25,26 @@
 | 2011校奖学金，2012国家奖学金 |
 |        2012校优秀学生        |
 
+## 使用方法
+
+### 源代码入口
+
+view包中的ConsoleMenu类的main函数。
+
+### jar包
+
+在jar包所在目录下使用命令：
+
+```bash
+$java -jar xxx.jar
+```
+
+以运行打包好的程序
+
+## 测试文件
+
+- Rewards.csv
+- StudentInfoList.csv
+
+如果这两个文件出现问题，可以运行StudentInfoSystem.java这个类来重新生成，也可以自行录入学生信息，并使用保存到文件选项。
+
