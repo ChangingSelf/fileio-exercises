@@ -1,10 +1,17 @@
 # fileio-exercises
+
 数据库课老师布置的文件读写练习
 
 - 1.建两个文本文件
 - 2.插入学生信息
 - 3.查询学生对应的奖励
 - 4.增删改信息
+
+
+
+[本练习代码的解析博客的链接](http://yxchangingself.xyz/posts/java_simple_studentInfoSystem/)
+
+
 
 ## 文件1 学生基本信息
 
